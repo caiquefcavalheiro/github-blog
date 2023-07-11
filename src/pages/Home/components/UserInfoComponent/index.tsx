@@ -3,36 +3,40 @@ import { SocialInfo, UserInfo, UserInfoContainer } from "./styles";
 import { FaGithub } from "react-icons/fa";
 import { BsBuildingFill } from "react-icons/bs";
 import { HiUsers } from "react-icons/hi";
-import avatar from "../../../../assets/avatar.png";
+import { useContextSelector } from "use-context-selector";
+import { GithubContext } from "../../../../context/GithubContext";
 
 export function UserInfoComponent() {
+  const userInfo = useContextSelector(GithubContext, (context) => {
+    return context.githubUser;
+  });
+
+  const { html_url, bio, avatar_url, company, followers, login, name } =
+    userInfo;
+
   return (
     <UserInfoContainer>
-      <img src={avatar} alt="" />
+      <img src={avatar_url} alt="" />
       <UserInfo>
         <div>
-          <h3>Cameron Williamson</h3>
-          <a href="#" target="_blank">
+          <h3>{name}</h3>
+          <a href={html_url} target="_blank">
             GITHUB <FaArrowUpRightFromSquare />
           </a>
         </div>
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{bio}</p>
         <SocialInfo>
           <p>
             <FaGithub />
-            cameronwll
+            {login}
           </p>
           <p>
             <BsBuildingFill />
-            Rocketseat
+            {company ? company : "Open to work"}
           </p>
           <p>
             <HiUsers />
-            32 seguidores
+            {followers} seguidores
           </p>
         </SocialInfo>
       </UserInfo>

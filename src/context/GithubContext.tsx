@@ -1,11 +1,6 @@
-import {
-  ReactNode,
-  createContext,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { api } from "../api/axios";
+import { createContext } from "use-context-selector";
 
 interface GithubProviderProps {
   children: ReactNode;
@@ -13,11 +8,13 @@ interface GithubProviderProps {
 
 interface GithubUserProps {
   id: number;
+  html_url: string;
   avatar_url: string;
   login: string;
   name: string;
   company: string;
   followers: number;
+  bio: string;
 }
 
 interface GithubIssuesProps {
@@ -74,7 +71,7 @@ export function GithubProvider({ children }: GithubProviderProps) {
   useEffect(() => {
     fetchGetUser();
     fetchGetReposIssues();
-  }, []);
+  }, [fetchGetUser, fetchGetReposIssues]);
 
   return (
     <GithubContext.Provider
