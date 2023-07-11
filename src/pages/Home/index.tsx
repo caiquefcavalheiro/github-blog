@@ -1,42 +1,11 @@
+import { UserInfoComponent } from "./components/UserInfoComponent";
 import { HeaderContainer } from "./styles";
-import avatar from "../../assets/avatar.png";
-import { FaGithub } from "react-icons/fa";
-import { BsBuildingFill } from "react-icons/bs";
-import { HiUsers } from "react-icons/hi";
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 export function Home() {
   return (
     <>
       <HeaderContainer />
-      <div>
-        <img src={avatar} alt="" />
-        <div>
-          <h3>Cameron Williamson</h3>
-          <a>
-            GITHUB <FaArrowUpRightFromSquare />
-          </a>
-          <p>
-            Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-            viverra massa quam dignissim aenean malesuada suscipit. Nunc,
-            volutpat pulvinar vel mass.
-          </p>
-          <div>
-            <p>
-              <FaGithub />
-              cameronwll
-            </p>
-            <p>
-              <BsBuildingFill />
-              Rocketseat
-            </p>
-            <p>
-              <HiUsers />
-              32 seguidores
-            </p>
-          </div>
-        </div>
-      </div>
+      <UserInfoComponent />
       <div>
         <div>
           <h4>Publicações</h4>
