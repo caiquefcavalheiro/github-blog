@@ -5,7 +5,7 @@ export const HeaderContainer = styled.header`
   width: 100vw;
   margin: 0 auto;
 
-  background-image: url("./src/assets/background.png");
+  background-image: url("../src/assets/background.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -76,7 +76,7 @@ export const PostInfo = styled.div`
 
 export const PostContent = styled.div`
   max-width: 54rem;
-  margin: 0 auto;
+  margin: 0 auto 4rem auto;
 
   display: flex;
   flex-direction: column;
@@ -84,6 +84,10 @@ export const PostContent = styled.div`
   text-align: justify;
 
   color: ${(props) => props.theme["base-text"]};
+
+  p img {
+    width: 100%;
+  }
 
   h1,
   h2,

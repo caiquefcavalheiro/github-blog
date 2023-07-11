@@ -2,9 +2,6 @@ import { styled } from "styled-components";
 
 export const HeaderContainer = styled.header`
   height: 18.5rem;
-  width: 100vw;
-  margin: 0 auto;
-
   background-image: url("./src/assets/background.png");
   background-position: center;
   background-size: cover;
@@ -17,9 +14,11 @@ export const SearchFormContainer = styled.div`
   max-width: 54rem;
   margin: 0 auto;
   gap: 0.75rem;
+  width: fit-content;
 
   div {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
   }
 
@@ -30,6 +29,7 @@ export const SearchFormContainer = styled.div`
     color: ${(props) => props.theme["base-label"]};
     border: 1px solid ${(props) => props.theme["base-border"]};
     border-radius: 0.375rem;
+    width: 100%;
   }
 
   h4 {
@@ -41,5 +41,16 @@ export const SearchFormContainer = styled.div`
   p {
     font-size: 0.875rem;
     color: ${(props) => props.theme["base-span"]};
+  }
+
+  @media (min-width: 1000px) {
+    width: auto;
+
+    div {
+      flex-direction: row;
+    }
+
+    input {
+    }
   }
 `;

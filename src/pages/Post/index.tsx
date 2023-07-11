@@ -28,6 +28,8 @@ export function Post() {
 
   const findIssueById = issues.find((issue) => issue.id === Number(id));
 
+  console.log(findIssueById?.body);
+
   return (
     <>
       <HeaderContainer />

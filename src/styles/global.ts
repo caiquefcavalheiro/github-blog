@@ -6,10 +6,6 @@ export const GlobalStyles = createGlobalStyle`
         padding:0;
         box-sizing: border-box;
     }
-    
-    :root{
-        overflow-x: hidden;
-    }
 
     :focus{
         outline:0;
@@ -26,6 +22,6 @@ export const GlobalStyles = createGlobalStyle`
         font-weight: 400;
         font-size: 1rem;
         font-family: "Nunito", sans-serif;
-        line-height: 1.6;
+        /* line-height: 160%; */
     }
 `;

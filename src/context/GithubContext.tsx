@@ -29,7 +29,7 @@ interface GithubIssuesProps {
 interface GithubContextType {
   githubUser: GithubUserProps;
   githubIssues: GithubIssuesProps[];
-  fetchGetSearchIssues: (searchInput: string) => Promise<void>;
+  fetchGetSearchIssues: (searchInput?: string) => Promise<void>;
 }
 
 export const GithubContext = createContext<GithubContextType>(
@@ -51,17 +51,17 @@ export function GithubProvider({ children }: GithubProviderProps) {
 
   const fetchGetReposIssues = useCallback(async () => {
     const response = await api.get(
-      "repos/rocketseat-education/reactjs-github-blog-challenge/issues"
+      "repos/caiquefcavalheiro/github-blog/issues"
     );
     setGithubIssues(response.data as GithubIssuesProps[]);
   }, []);
 
-  const fetchGetSearchIssues = useCallback(async (searchInput: string) => {
+  const fetchGetSearchIssues = useCallback(async (searchInput = "") => {
     const fixSearchInput = searchInput.replace(" ", "%20").trim();
 
     const response = await api.get("https://api.github.com/search/issues", {
       params: {
-        q: `?q=${fixSearchInput}repo:rocketseat-education/reactjs-github-blog-challenge`,
+        q: `${fixSearchInput}repo:caiquefcavalheiro/github-blog`,
       },
     });
 

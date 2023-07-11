@@ -1,20 +1,20 @@
 import { styled } from "styled-components";
 
 export const IssuesContainer = styled.div`
-  margin: 3rem auto 0 auto;
   max-width: 54rem;
+  margin: 0 auto;
 
   ul {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 2rem;
+    margin: 2.5rem 2rem 4rem 2rem;
   }
 
   li {
     height: 100%;
     cursor: pointer;
     list-style-type: none;
-    width: 26rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -46,7 +46,21 @@ export const IssuesContainer = styled.div`
   }
 
   a {
+    display: block;
     text-decoration: none;
+  }
+
+  @media (min-width: 1000px) {
+    ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: normal;
+      margin: 2.5rem 0 4rem 0;
+    }
+
+    li {
+      max-width: 26rem;
+    }
   }
 `;
 
