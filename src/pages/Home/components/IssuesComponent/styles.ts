@@ -11,6 +11,7 @@ export const IssuesContainer = styled.div`
   }
 
   li {
+    height: 100%;
     cursor: pointer;
     list-style-type: none;
     width: 26rem;
@@ -35,6 +36,7 @@ export const IssuesContainer = styled.div`
   }
 
   p {
+    text-align: justify;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -42,9 +44,15 @@ export const IssuesContainer = styled.div`
     -webkit-box-orient: vertical;
     color: ${(props) => props.theme["base-text"]};
   }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const IssuesHeader = styled.div`
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 70% 30%;
+  justify-items: stretch;
+  gap: 1rem;
 `;

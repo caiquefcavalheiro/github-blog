@@ -11,50 +11,67 @@ import {
   PostInfo,
 } from "./styles";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { useParams } from "react-router-dom";
+import { useContextSelector } from "use-context-selector";
+import { GithubContext } from "../../context/GithubContext";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from "remark-gfm";
+import { formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 
 export function Post() {
+  const { id } = useParams();
+
+  const { user, issues } = useContextSelector(GithubContext, (context) => {
+    return { issues: context.githubIssues, user: context.githubUser };
+  });
+
+  const findIssueById = issues.find((issue) => issue.id === Number(id));
+
   return (
     <>
       <HeaderContainer />
-      <PostHeaderContainer>
-        <div>
-          <a href="#">
-            <MdOutlineArrowBackIosNew />
-            VOLTAR
-          </a>
-          <a href="#" target="_blank">
-            GITHUB <FaArrowUpRightFromSquare />
-          </a>
-        </div>
-        <p>JavaScript data types and data structures</p>
-        <PostInfo>
-          <p>
-            <FaGithub />
-            cameronwll
-          </p>
-          <p>
-            <FaCalendarDay />
-            Há 1 dia
-          </p>
-          <p>
-            <FaComment />5 comentários
-          </p>
-        </PostInfo>
-      </PostHeaderContainer>
-      <PostContent>
-        {/* React-MarkDown */}
-        <p>
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have. These can be used to build other data
-          structures. Wherever possible, comparisons with other languages are
-          drawn. Dynamic typing JavaScript is a loosely typed and dynamic
-          language. Variables in JavaScript are not directly associated with any
-          particular value type, and any variable can be assigned (and
-          re-assigned) values of all types:
-        </p>
-      </PostContent>
+      {findIssueById && (
+        <>
+          <PostHeaderContainer>
+            <div>
+              <a href="/">
+                <MdOutlineArrowBackIosNew />
+                VOLTAR
+              </a>
+              <a href={user.html_url} target="_blank">
+                GITHUB <FaArrowUpRightFromSquare />
+              </a>
+            </div>
+            <p>{findIssueById?.title}</p>
+            <PostInfo>
+              <p>
+                <FaGithub />
+                {user.login}
+              </p>
+              <p>
+                <FaCalendarDay />
+                {formatDistanceToNow(new Date(findIssueById.created_at), {
+                  addSuffix: true,
+                  locale: ptBR,
+                })}
+              </p>
+              <p>
+                <FaComment />
+                {findIssueById?.comments} comentários
+              </p>
+            </PostInfo>
+          </PostHeaderContainer>
+          <PostContent>
+            {findIssueById && (
+              <ReactMarkdown
+                children={findIssueById.body}
+                remarkPlugins={[remarkGfm]}
+              />
+            )}
+          </PostContent>
+        </>
+      )}
     </>
   );
 }

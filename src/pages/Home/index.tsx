@@ -1,8 +1,14 @@
+import { useContextSelector } from "use-context-selector";
 import { IssuesComponent } from "./components/IssuesComponent";
 import { UserInfoComponent } from "./components/UserInfoComponent";
 import { HeaderContainer, SearchFormContainer } from "./styles";
+import { GithubContext } from "../../context/GithubContext";
 
 export function Home() {
+  const searchRequest = useContextSelector(GithubContext, (context) => {
+    return context.fetchGetSearchIssues;
+  });
+
   return (
     <>
       <HeaderContainer />

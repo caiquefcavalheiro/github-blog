@@ -77,4 +77,33 @@ export const PostInfo = styled.div`
 export const PostContent = styled.div`
   max-width: 54rem;
   margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: justify;
+
+  color: ${(props) => props.theme["base-text"]};
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+  }
+
+  p {
+    align-self: center;
+  }
+
+  a {
+    color: ${(props) => props.theme["brand-blue"]};
+  }
+
+  pre {
+    background: ${(props) => props.theme["base-post"]};
+    padding: 1rem;
+  }
 `;

@@ -21,7 +21,7 @@ interface GithubIssuesProps {
   id: number;
   url: string;
   title: string;
-  createdAt: string;
+  created_at: string;
   body: string;
   comments: string;
 }
