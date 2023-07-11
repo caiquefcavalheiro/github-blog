@@ -2,8 +2,6 @@ import { styled } from "styled-components";
 
 export const HeaderContainer = styled.header`
   height: 18.5rem;
-  width: 100vw;
-  margin: 0 auto;
 
   background-image: url("../src/assets/background.png");
   background-position: center;
@@ -15,6 +13,7 @@ export const PostHeaderContainer = styled.div`
   background: ${(props) => props.theme["base-profile"]};
   border-radius: 0.625rem;
   max-width: 54rem;
+  width: 95vw;
   margin: -6rem auto 4.5rem auto;
   padding: 2rem;
 
@@ -58,8 +57,8 @@ export const PostHeaderContainer = styled.div`
 
 export const PostInfo = styled.div`
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
 
   svg {
     font-size: 18px;
@@ -72,10 +71,17 @@ export const PostInfo = styled.div`
     gap: 0.5rem;
     color: ${(props) => props.theme["base-subtitle"]};
   }
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
 `;
 
 export const PostContent = styled.div`
   max-width: 54rem;
+  width: 90vw;
   margin: 0 auto 4rem auto;
 
   display: flex;
@@ -107,7 +113,14 @@ export const PostContent = styled.div`
   }
 
   pre {
+    display: none;
     background: ${(props) => props.theme["base-post"]};
     padding: 1rem;
+  }
+
+  @media (min-width: 720px) {
+    pre {
+      display: block;
+    }
   }
 `;
