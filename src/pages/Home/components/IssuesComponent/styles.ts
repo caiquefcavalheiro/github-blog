@@ -11,10 +11,12 @@ export const IssuesContainer = styled.div`
   }
 
   li {
+    cursor: pointer;
     list-style-type: none;
     width: 26rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1.25rem;
     padding: 2rem;
     background: ${(props) => props.theme["base-post"]};
